@@ -13,7 +13,7 @@ const App = () => {
     axios
       .get('https://api.unsplash.com/photos', {
         headers: {
-          Authorization: `Client-ID u8kE08x56p_AhZYVcQLEIAYDhJIv4UH76IGi3Oq37mo`,
+          Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`,
         },
       })
       .then((response) => setImages(response.data))
@@ -22,7 +22,7 @@ const App = () => {
 
   const handleSearch = (searchQuery) => {
     axios
-      .get(`https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=u8kE08x56p_AhZYVcQLEIAYDhJIv4UH76IGi3Oq37mo`)
+      .get(`https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
       .then((response) => setImages(response.data.results))
       .catch((error) => console.error(error));
   };
