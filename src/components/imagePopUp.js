@@ -6,10 +6,9 @@ const ImagePopUp = ({ image, onClose }) => {
     const { user } = image;
 
     return (
-        <div className="image-popup">
+        <div className="image-popup" onClick={onClose}>
             <div className="popup-content">
                 <div className="popup-header">
-                    <button className="close-button" onClick={onClose}>X</button>
                 </div>
                 <div className="popup-body">
                     <img src={image.urls.regular} alt={image.description} className="popup-image" />

@@ -5,8 +5,8 @@ const ImageThumbnail = ({ image, onClick }) => {
         <div className="image-thumbnail" onClick={() => onClick(image)}>
             <img src={image.urls.regular} alt={image.description} />
             <div className="image-info">
-                <p>By: {image.user.name}</p>
-                <p>Likes: {image.likes}</p>
+                <p>{image.user.name}</p>
+                <p>❤ {image.likes}</p>
             </div>
         </div>
     );

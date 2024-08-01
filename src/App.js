@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
-import ImageSearch from './components/imageSearch';
+import NavigationBar from './components/navigationBar';
 import ImageThumbnail from './components/imageThumbnail';
 import ImagePopUp from './components/imagePopUp';
 
@@ -37,15 +37,18 @@ const App = () => {
 
   return (
     <div className="app">
+      <NavigationBar onSearch={handleSearch} />
       <div className="background-img">
-        <h1>Image Gallery</h1>
-        <div>
-          <ImageSearch onSearch={handleSearch} />
-        </div>
+        <h1>Download High Quality Images by Creators</h1>
       </div>
       <div className="image-gallery">
         {images.map((image) => (
-          <ImageThumbnail key={image.id} image={image} onClick={() => openImagePopUp(image)} />
+          <div className="image-container" key={image.id}>
+            <ImageThumbnail
+              image={image}
+              onClick={() => openImagePopUp(image)}
+            />
+          </div>
         ))}
       </div>
       <ImagePopUp image={selectedImage} onClose={closeImagePopUp} />
