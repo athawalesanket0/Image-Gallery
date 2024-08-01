@@ -1,12 +1,12 @@
 import React from 'react';
 import ImageSearch from './imageSearch';
 
-const NavigationBar = () => {
+const NavigationBar = ({onSearch}) => {
 
     return (
         <nav className="navigation-bar">
             <div className="logo">Image Gallery</div>
-            <ImageSearch />
+            <ImageSearch onSearch={onSearch} />
             <ul className="nav-links">
                 <li><a href="/explore">Explore</a></li>
                 <li><a href="/collection">Collection</a></li>
