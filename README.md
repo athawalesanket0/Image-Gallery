@@ -1,1 +1,1 @@
-https://image-gallery-idrgjas.vercel.app/
+https://image-gallery-8vfwrhg03-sanket-athawales-projects.vercel.app/
