@@ -8,6 +8,21 @@ import ImagePopUp from './components/imagePopUp';
 const App = () => {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   useEffect(() => {
     axios
@@ -36,8 +51,8 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-      <NavigationBar onSearch={handleSearch} />
+    <div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      <NavigationBar onSearch={handleSearch} darkMode={darkMode} setDarkMode={setDarkMode} />
       <div className="background-img">
         <h1>Download High Quality Images by Creators</h1>
       </div>
