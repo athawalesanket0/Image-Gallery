@@ -120,7 +120,7 @@ body {
 .image-gallery {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
 }
 
@@ -275,9 +275,15 @@ html.dark-mode .image-info {
   }
 }
 
+@media (max-width: 1048px) {
+  .image-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (max-width: 800px) {
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -309,6 +315,13 @@ html.dark-mode .image-info {
     justify-content: space-evenly;
   }
 }
+
+@media (max-width: 680px) {
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 
 @media (max-width: 480px) {
   .image-gallery {
