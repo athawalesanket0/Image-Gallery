@@ -4,6 +4,7 @@ import axios from 'axios';
 import NavigationBar from './components/navigationBar';
 import ImageThumbnail from './components/imageThumbnail';
 import ImagePopUp from './components/imagePopUp';
+import { getPhotos } from './services/GetServices';
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -24,20 +25,25 @@ const App = () => {
     }
   }, [darkMode]);
 
+  const fetchImages = async () => {
+    try {
+      const res = await getPhotos();
+      console.log("res: ", res);
+      setImages(res.data);
+    } catch (error) {
+      console.error("Error message: ", error.message);
+      console.error("Error status: ", error.response.status);
+      console.error("Error data: ", error.response.data);
+    }
+  }
+
   useEffect(() => {
-    axios
-      .get('https://api.unsplash.com/photos', {
-        headers: {
-          Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`,
-        },
-      })
-      .then((response) => setImages(response.data))
-      .catch((error) => console.error(error));
+    fetchImages();
   }, []);
 
   const handleSearch = (searchQuery) => {
     axios
-      .get(`https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
+      .get(`https://api.unsplash.com/search/photos?per_page=15&query=${searchQuery}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
       .then((response) => setImages(response.data.results))
       .catch((error) => console.error(error));
   };
